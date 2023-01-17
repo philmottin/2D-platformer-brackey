@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(SpriteRenderer))]
 
 static class Constants
 {
     public const int LEFT = -1;
     public const int RIGHT = 1;
 }
+
+[RequireComponent(typeof(SpriteRenderer))]
 public class Tiling : MonoBehaviour
 {
     public int offsetX = 2; // offset for checking the edges
@@ -50,10 +51,10 @@ public class Tiling : MonoBehaviour
 
             // checking if we can see the edge of the element and then calling MakeNewBuddy() if we can
             if (cam.transform.position.x >= (edgeVisiblePositionRight - offsetX) && hasRightBuddy == false) {
-                MakeNewBuddy(1);
+                MakeNewBuddy(Constants.RIGHT);
                 hasRightBuddy = true;
             } else if (cam.transform.position.x <= (edgeVisiblePositionLeft + offsetX) && hasLeftBuddy == false) {
-                MakeNewBuddy(-1);
+                MakeNewBuddy(Constants.LEFT);
                 hasLeftBuddy = true;
             }
         }
