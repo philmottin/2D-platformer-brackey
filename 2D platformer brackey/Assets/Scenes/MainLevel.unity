@@ -147,7 +147,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 65776145}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 807245904f9fccc489ad8ccd4431ccbc, type: 3}
   m_Name: 
@@ -525,6 +525,7 @@ GameObject:
   m_Component:
   - component: {fileID: 450452825}
   - component: {fileID: 450452824}
+  - component: {fileID: 450452826}
   m_Layer: 0
   m_Name: BackgroundMountainPurple
   m_TagString: Untagged
@@ -599,6 +600,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &450452826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 450452823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e98f1fb5b74724a4caad323ef82d1d07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsetX: 2
+  hasRightBuddy: 0
+  hasLeftBuddy: 0
+  reverseScale: 1
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -916,7 +933,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 948585042}
-  runSpeed: 40
+  runSpeed: 50
   animator: {fileID: 0}
 --- !u!114 &948585042
 MonoBehaviour:
@@ -1195,6 +1212,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1260201764}
   - component: {fileID: 1260201763}
+  - component: {fileID: 1260201765}
   m_Layer: 0
   m_Name: BackgroundMountainBlue
   m_TagString: Untagged
@@ -1269,6 +1287,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1260201765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1260201762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e98f1fb5b74724a4caad323ef82d1d07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsetX: 2
+  hasRightBuddy: 0
+  hasLeftBuddy: 0
+  reverseScale: 1
 --- !u!1 &1279578179
 GameObject:
   m_ObjectHideFlags: 0
@@ -1474,6 +1508,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1555243214}
   - component: {fileID: 1555243213}
+  - component: {fileID: 1555243215}
   m_Layer: 0
   m_Name: ForegroundDirt
   m_TagString: Untagged
@@ -1548,6 +1583,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1555243215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1555243212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e98f1fb5b74724a4caad323ef82d1d07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsetX: 2
+  hasRightBuddy: 0
+  hasLeftBuddy: 0
+  reverseScale: 0
 --- !u!1 &1646541774
 GameObject:
   m_ObjectHideFlags: 0
