@@ -11,22 +11,22 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -105970202961566813}
-    m_Position: {x: 380, y: 210, z: 0}
+    m_Position: {x: 230, y: 210, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 361530052495009929}
     m_Position: {x: -20, y: 210, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1218151736998456893}
-    m_Position: {x: 80, y: 90, z: 0}
+    m_Position: {x: 90, y: 130, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: -5343224258559239932}
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 110, y: 30, z: 0}
+  m_AnyStatePosition: {x: 110, y: 60, z: 0}
   m_EntryPosition: {x: 0, y: 300, z: 0}
-  m_ExitPosition: {x: -180, y: 70, z: 0}
+  m_ExitPosition: {x: 240, y: 300, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 361530052495009929}
 --- !u!1101 &-5411572571411405262
@@ -81,7 +81,7 @@ AnimatorStateTransition:
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
+  m_CanTransitionToSelf: 0
 --- !u!1101 &-2497714778701981300
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
