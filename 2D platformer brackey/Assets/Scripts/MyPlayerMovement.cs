@@ -20,7 +20,7 @@ public class MyPlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update() {
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
-        //animator.SetFloat("speed", Mathf.Abs(horizontalMove));
+        animator.SetFloat("speed", Mathf.Abs(horizontalMove));
 
         /*
          * The jump animation only works with the 'Has exit time' checked on both transitions
@@ -43,7 +43,7 @@ public class MyPlayerMovement : MonoBehaviour
          */
         if (Input.GetButtonDown("Jump")) {
             jump = true;
-            //animator.SetBool("isJumping", true);
+            animator.SetBool("isJumping", true);
         }
         if (Input.GetButtonDown("Crouch")) {
             crouch = true;
@@ -53,10 +53,10 @@ public class MyPlayerMovement : MonoBehaviour
     }
 
     public void onLanding() {
-       // animator.SetBool("isJumping", false);
+        animator.SetBool("isJumping", false);
     }
     public void onCrouching(bool isCrouching) {
-      //  animator.SetBool("isCrouching", isCrouching);
+        animator.SetBool("isCrouching", isCrouching);
     }
 
     void FixedUpdate() {
