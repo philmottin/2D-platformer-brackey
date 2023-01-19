@@ -45,11 +45,12 @@ public class MyPlayerMovement : MonoBehaviour
             jump = true;
             animator.SetBool("isJumping", true);
         }
+        /*
         if (Input.GetButtonDown("Crouch")) {
             crouch = true;
         } else if (Input.GetButtonUp("Crouch")) {
             crouch = false;
-        }
+        }*/
     }
 
     public void onLanding() {

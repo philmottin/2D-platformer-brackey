@@ -4,6 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Shootable
   - GM
   layers:
   - Default
@@ -12,11 +13,11 @@ TagManager:
   - Player
   - Water
   - UI
-  - Background
   - 
   - 
-  - 
-  - 
+  - Lighting
+  - Ground
+  - Postprocessing
   - 
   - 
   - 
@@ -39,15 +40,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Fire
+    uniqueID: 3804908061
+    locked: 0
   - name: Background
-    uniqueID: 1302301791
+    uniqueID: 2990346079
     locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
   - name: Player
-    uniqueID: 313446021
+    uniqueID: 3355750291
     locked: 0
   - name: Foreground
-    uniqueID: 816285779
+    uniqueID: 171233809
     locked: 0
