@@ -5,10 +5,15 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public float fireRate = 0f;
+    float timeToFire = 0f;
+    
+    public float bulletTrailRate = 10f;
+    float timeToBulletTrail = 0f;
+
     public float damage = 10f;
     public LayerMask whatToHit;
-    float timeToFire = 0f;
     Transform firePoint;
+    public Transform bulletTrailPrefab;
 
     private void Awake() {
         firePoint = transform.Find("FirePoint");
@@ -39,13 +44,24 @@ public class Weapon : MonoBehaviour
             //raycast parameters are origin and direction. 
             // mousePosition-firePointPosition give us the direction
             RaycastHit2D hit = Physics2D.Raycast(firePointPosition, mousePosition-firePointPosition, 100f, whatToHit);
+
+            // limit the bulletTrail effect because at rate of 10/second is good enough to look like a machine gun
+            // to have more will cause to computing.
+            if (Time.time > timeToBulletTrail) {
+                Effect();
+                timeToBulletTrail = Time.time + 1 / bulletTrailRate;
+            }
+            
             Debug.DrawLine(firePointPosition, (mousePosition - firePointPosition) *100, Color.cyan);
             //Debug.DrawLine(firePointPosition, mousePosition);
             if (hit.collider != null) {
                 Debug.DrawLine(firePointPosition, hit.point, Color.red);
-                Debug.Log("we hit " + hit.collider.name + "and did " + damage + " damage");
+                Debug.Log("we hit " + hit.collider.name + "and did " + damage + " damage");                
             }
+        }
 
+        void Effect() {
+            Instantiate(bulletTrailPrefab, firePoint.position, firePoint.rotation);
         }
     }
 }
