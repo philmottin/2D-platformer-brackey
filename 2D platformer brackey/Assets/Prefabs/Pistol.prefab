@@ -130,7 +130,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireRate: 0
+  bulletTrailRate: 10
   damage: 10
   whatToHit:
     serializedVersion: 2
     m_Bits: 115
+  bulletTrailPrefab: {fileID: 0}

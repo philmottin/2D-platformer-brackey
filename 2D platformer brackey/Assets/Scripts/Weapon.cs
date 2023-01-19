@@ -7,13 +7,15 @@ public class Weapon : MonoBehaviour
     public float fireRate = 0f;
     float timeToFire = 0f;
     
-    public float bulletTrailRate = 10f;
+    float bulletTrailRate = 10f;
     float timeToBulletTrail = 0f;
 
     public float damage = 10f;
+
     public LayerMask whatToHit;
     Transform firePoint;
     public Transform bulletTrailPrefab;
+    public Transform MuzzleFlashPrefab;
 
     private void Awake() {
         firePoint = transform.Find("FirePoint");
@@ -52,16 +54,31 @@ public class Weapon : MonoBehaviour
                 timeToBulletTrail = Time.time + 1 / bulletTrailRate;
             }
             
-            Debug.DrawLine(firePointPosition, (mousePosition - firePointPosition) *100, Color.cyan);
+            
+            //Debug.DrawLine(firePointPosition, (mousePosition - firePointPosition) *100, Color.cyan);
             //Debug.DrawLine(firePointPosition, mousePosition);
+
             if (hit.collider != null) {
-                Debug.DrawLine(firePointPosition, hit.point, Color.red);
-                Debug.Log("we hit " + hit.collider.name + "and did " + damage + " damage");                
+                //Debug.DrawLine(firePointPosition, hit.point, Color.red);
+                //Debug.Log("we hit " + hit.collider.name + "and did " + damage + " damage");                
             }
+            
         }
 
         void Effect() {
             Instantiate(bulletTrailPrefab, firePoint.position, firePoint.rotation);
+            
+            Transform muzzleFlashClone = Instantiate(MuzzleFlashPrefab, firePoint.position, firePoint.rotation);
+            muzzleFlashClone.parent = firePoint;
+            float size = Random.Range(0.6f, 0.9f);
+            muzzleFlashClone.localScale = new Vector3(size, size, 0);
+
+            // a way to pause for 1 frame and destroy. needs coroutine.
+            // yield return 0;
+            // Destroy(muzzleFlashClone.gameObject);
+
+            // or destroy after 0.02f time
+            Destroy(muzzleFlashClone.gameObject, 0.02f);
         }
     }
 }

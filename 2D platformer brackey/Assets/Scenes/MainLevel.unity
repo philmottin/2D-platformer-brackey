@@ -2067,8 +2067,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1716897392318145551, guid: 0f29dee5d4afb0c4b979fc99e099b163, type: 3}
+      propertyPath: MuzzleFlashPrefab
+      value: 
+      objectReference: {fileID: 515870246602559070, guid: 03704f26ac1f9ed46ad3741cec952822, type: 3}
+    - target: {fileID: 1716897392318145551, guid: 0f29dee5d4afb0c4b979fc99e099b163, type: 3}
       propertyPath: bulletTrailPrefab
       value: 
       objectReference: {fileID: 7542984275097755072, guid: eda3eef2a1053d34c997c0f8e9a56bc2, type: 3}
+    - target: {fileID: 7868370076364087248, guid: 0f29dee5d4afb0c4b979fc99e099b163, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f29dee5d4afb0c4b979fc99e099b163, type: 3}
