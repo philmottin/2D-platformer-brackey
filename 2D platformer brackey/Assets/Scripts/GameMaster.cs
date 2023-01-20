@@ -7,7 +7,7 @@ public class GameMaster : MonoBehaviour
 {
     public static GameMaster gm;
     public CinemachineVirtualCamera cinemachine;
-    private void Start() {
+    private void Awake() {
         if (gm == null) {
             gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
         }

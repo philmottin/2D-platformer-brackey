@@ -18,11 +18,24 @@ public class Weapon : MonoBehaviour
     public Transform MuzzleFlashPrefab;
     public Transform HitEffectPrefab;
 
+    public float camShakeAmount = 0.1f;
+    //CinemachineShake camShake;
+    CinemachineShake_coroutine camShake;
+
     private void Awake() {
         firePoint = transform.Find("FirePoint");
         if (firePoint == null) {
             Debug.LogError("No FirePoint object found.");
         }
+    }
+
+    private void Start() {
+        //camShake = GameMaster.gm.GetComponent<CinemachineShake>();
+        camShake = GameMaster.gm.GetComponent<CinemachineShake_coroutine>();
+        if (camShake == null) {
+            Debug.Log("No CinemachineShake script found on GM object");
+        }
+
     }
 
     // Update is called once per frame
@@ -104,6 +117,8 @@ public class Weapon : MonoBehaviour
 
             // or destroy after 0.02f time
             Destroy(muzzleFlashClone.gameObject, 0.02f);
+
+            camShake.Shake(0.2f, 0.8f, 1f);
         }
     }
 }
