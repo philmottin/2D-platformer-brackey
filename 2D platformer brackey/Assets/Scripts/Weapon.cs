@@ -16,6 +16,7 @@ public class Weapon : MonoBehaviour
     Transform firePoint;
     public Transform bulletTrailPrefab;
     public Transform MuzzleFlashPrefab;
+    public Transform HitEffectPrefab;
 
     private void Awake() {
         firePoint = transform.Find("FirePoint");
@@ -47,12 +48,6 @@ public class Weapon : MonoBehaviour
             // mousePosition-firePointPosition give us the direction
             RaycastHit2D hit = Physics2D.Raycast(firePointPosition, mousePosition-firePointPosition, 100f, whatToHit);
 
-            // limit the bulletTrail effect because at rate of 10/second is good enough to look like a machine gun
-            // to have more will cause to computing.
-            if (Time.time > timeToBulletTrail) {
-                Effect();
-                timeToBulletTrail = Time.time + 1 / bulletTrailRate;
-            }
             
             
             //Debug.DrawLine(firePointPosition, (mousePosition - firePointPosition) *100, Color.cyan);
@@ -66,11 +61,38 @@ public class Weapon : MonoBehaviour
                     enemy.DamageEnemy(damage);
             }
             
+            // limit the bulletTrail effect because at rate of 10/second is good enough to look like a machine gun
+            // to have more will cause to computing.
+            if (Time.time > timeToBulletTrail) {
+                Vector3 hitPos;
+                Vector3 hitNormal;
+                if (hit.collider == null) {
+                    hitPos = (mousePosition - firePointPosition) * 10;
+                    hitNormal = new Vector3(9999, 9999, 9999);
+                } else {
+                    hitPos = hit.point;
+                    hitNormal = hit.normal;
+
+                }
+                Effect(hitPos, hitNormal);
+                timeToBulletTrail = Time.time + 1 / bulletTrailRate;
+            }
         }
 
-        void Effect() {
-            Instantiate(bulletTrailPrefab, firePoint.position, firePoint.rotation);
-            
+        void Effect(Vector3 hitPosition, Vector3 hitNormal) {
+            Transform bulletTrail = Instantiate(bulletTrailPrefab, firePoint.position, firePoint.rotation);
+            LineRenderer lr = bulletTrail.GetComponent<LineRenderer>();
+            if (lr != null) {
+                lr.SetPosition(0, firePoint.position);
+                lr.SetPosition(1, hitPosition);
+            }
+            Destroy(bulletTrail.gameObject, 0.04f);
+            if (hitNormal != new Vector3(9999, 9999, 9999))
+            {
+                //deleted on the particle system
+                Instantiate(HitEffectPrefab, hitPosition, Quaternion.FromToRotation(Vector3.forward,hitNormal));
+            }
+
             Transform muzzleFlashClone = Instantiate(MuzzleFlashPrefab, firePoint.position, firePoint.rotation);
             muzzleFlashClone.parent = firePoint;
             float size = Random.Range(0.6f, 0.9f);

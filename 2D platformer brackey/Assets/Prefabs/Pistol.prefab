@@ -104,7 +104,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 313446021
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: -1056102352, guid: ad13b8f91777d784b8e70af66d88eed3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -130,9 +130,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireRate: 0
-  bulletTrailRate: 10
   damage: 10
   whatToHit:
     serializedVersion: 2
-    m_Bits: 115
-  bulletTrailPrefab: {fileID: 0}
+    m_Bits: 627
+  bulletTrailPrefab: {fileID: 7542984275097755072, guid: eda3eef2a1053d34c997c0f8e9a56bc2,
+    type: 3}
+  MuzzleFlashPrefab: {fileID: 515870246602559070, guid: 03704f26ac1f9ed46ad3741cec952822,
+    type: 3}
+  HitEffectPrefab: {fileID: 3273032251480992433, guid: e704232aaa262134ebbed4d600e2f504,
+    type: 3}
