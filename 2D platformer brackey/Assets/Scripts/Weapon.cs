@@ -10,7 +10,7 @@ public class Weapon : MonoBehaviour
     float bulletTrailRate = 10f;
     float timeToBulletTrail = 0f;
 
-    public float damage = 10f;
+    public int damage = 10;
 
     public LayerMask whatToHit;
     Transform firePoint;
@@ -60,7 +60,10 @@ public class Weapon : MonoBehaviour
 
             if (hit.collider != null) {
                 //Debug.DrawLine(firePointPosition, hit.point, Color.red);
-                //Debug.Log("we hit " + hit.collider.name + "and did " + damage + " damage");                
+                Debug.Log("we hit " + hit.collider.name + "and did " + damage + " damage");
+                Enemy enemy = hit.collider.GetComponent<Enemy>();
+                if (enemy != null)
+                    enemy.DamageEnemy(damage);
             }
             
         }
