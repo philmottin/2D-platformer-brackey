@@ -7,10 +7,15 @@ public class GameMaster : MonoBehaviour
 {
     public static GameMaster gm;
     public CinemachineVirtualCamera cinemachine;
+
+    private static int _remainingLives = 3;
+    public static int RemainingLives { get { return _remainingLives; } }
+
     private void Awake() {
         if (gm == null) {
             gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
         }
+        
     }
 
 
@@ -19,12 +24,20 @@ public class GameMaster : MonoBehaviour
     public float spawnDelay = 3.5f;
     public Transform spawnEffectPrefab;
 
+    [SerializeField]
+    private GameObject gameOverUI;
+
     public CinemachineShake_coroutine cinemachineShake;
 
     private void Start() {
         if (cinemachineShake == null) {
             Debug.LogError("No cinemachineShake reference found in GameMaster");
         }
+    }
+
+    public void EndGame() {
+        Debug.Log("GAME OVER");
+        gameOverUI.SetActive(true);
     }
 
     public IEnumerator RespawnPlayer() {
@@ -38,7 +51,14 @@ public class GameMaster : MonoBehaviour
     }
     public static void KillPlayer(Player player) {
         Destroy(player.gameObject);
-        gm.StartCoroutine(gm.RespawnPlayer());
+        _remainingLives--;
+        if (_remainingLives <=0) {
+            gm.EndGame();
+            
+        } else {
+            gm.StartCoroutine(gm.RespawnPlayer());
+        }
+
     }
 
     public static void KillEnemy(Enemy enemy) {
@@ -50,6 +70,7 @@ public class GameMaster : MonoBehaviour
         Instantiate(_enemy.enemyDeathEffect, _enemy.transform.position, Quaternion.identity);
         cinemachineShake.Shake(_enemy.enemyStats.shakeDuration, _enemy.enemyStats.shakeAmplitude, _enemy.enemyStats.shakeFrequency);
         Destroy(_enemy.gameObject);
+        
     }
 
 }
