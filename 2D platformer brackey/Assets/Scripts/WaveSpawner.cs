@@ -19,13 +19,16 @@ public class WaveSpawner : MonoBehaviour
 
     public Wave[] waves;
     private int nextWave = 0;
+    public int NextWave { get { return nextWave+1; } }
 
     public float timeBetweemWaves = 5f;
-    public float waveCountdown;
+    private float waveCountdown;
+    public float WaveCountdown { get { return waveCountdown; } }
 
     private float searchCountdown = 1f;
 
-    public SpawnState state = SpawnState.COUNTING;
+    private SpawnState state = SpawnState.COUNTING;
+    public SpawnState State { get { return state; } }
 
     // Start is called before the first frame update
     void Start() {
