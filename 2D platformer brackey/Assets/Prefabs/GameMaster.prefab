@@ -74,6 +74,7 @@ MonoBehaviour:
   spawnDelay: 3.5
   spawnEffectPrefab: {fileID: 2241001430578436723, guid: 86b1581a588f39c45936aab21e915050,
     type: 3}
+  cinemachineShake: {fileID: 2395196419619421085}
 --- !u!82 &2395196419619421075
 AudioSource:
   m_ObjectHideFlags: 0
@@ -211,7 +212,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b03872aaed867543ada3c4f3be7d765, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShakeDuration: 0.3
-  ShakeAmplitude: 1.2
-  ShakeFrequency: 2
   VirtualCamera: {fileID: 0}

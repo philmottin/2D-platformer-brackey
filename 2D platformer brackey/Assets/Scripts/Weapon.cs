@@ -67,8 +67,14 @@ public class Weapon : MonoBehaviour
             //Debug.DrawLine(firePointPosition, mousePosition);
 
             if (hit.collider != null) {
+                /* shake on hit must be first otherwise on enemy death this will cancel 
+                 * the death shake.
+                 * If this shake is called on effect function below, it will cancel the death shake  
+                 * because the death shake was called first upon enemy damage.
+                 */
+                camShake.Shake(0.2f, 0.5f, 0.5f);
                 //Debug.DrawLine(firePointPosition, hit.point, Color.red);
-                Debug.Log("we hit " + hit.collider.name + "and did " + damage + " damage");
+                //Debug.Log("we hit " + hit.collider.name + "and did " + damage + " damage");
                 Enemy enemy = hit.collider.GetComponent<Enemy>();
                 if (enemy != null)
                     enemy.DamageEnemy(damage);
@@ -117,8 +123,6 @@ public class Weapon : MonoBehaviour
 
             // or destroy after 0.02f time
             Destroy(muzzleFlashClone.gameObject, 0.02f);
-
-            camShake.Shake(0.2f, 0.8f, 1f);
         }
     }
 }

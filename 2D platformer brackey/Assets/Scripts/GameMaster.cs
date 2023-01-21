@@ -17,8 +17,15 @@ public class GameMaster : MonoBehaviour
     public Transform playerPrefab;
     public Transform spawnPoint;
     public float spawnDelay = 3.5f;
-
     public Transform spawnEffectPrefab;
+
+    public CinemachineShake_coroutine cinemachineShake;
+
+    private void Start() {
+        if (cinemachineShake == null) {
+            Debug.LogError("No cinemachineShake reference found in GameMaster");
+        }
+    }
 
     public IEnumerator RespawnPlayer() {
         GetComponent<AudioSource>().Play();
@@ -35,8 +42,14 @@ public class GameMaster : MonoBehaviour
     }
 
     public static void KillEnemy(Enemy enemy) {
-        Destroy(enemy.gameObject);
+        gm._killEnemy(enemy);
+    }
 
+    public void _killEnemy(Enemy _enemy) {
+        // Destroy on the particle system
+        Instantiate(_enemy.enemyDeathEffect, _enemy.transform.position, Quaternion.identity);
+        cinemachineShake.Shake(_enemy.enemyStats.shakeDuration, _enemy.enemyStats.shakeAmplitude, _enemy.enemyStats.shakeFrequency);
+        Destroy(_enemy.gameObject);
     }
 
 }
