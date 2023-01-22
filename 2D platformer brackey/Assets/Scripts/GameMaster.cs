@@ -14,6 +14,11 @@ public class GameMaster : MonoBehaviour
     private static int _remainingLives;
     public static int RemainingLives { get { return _remainingLives; } }
 
+    [SerializeField]
+    private int startingMoney;
+
+    public static int money;
+
     private void Awake() {
         if (gm == null) {
             gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
@@ -29,6 +34,14 @@ public class GameMaster : MonoBehaviour
 
     [SerializeField]
     private GameObject gameOverUI;
+    [SerializeField]
+    private GameObject upgradeUI;
+
+    [SerializeField]
+    private WaveSpawner waveSpawner;
+
+    public delegate void UpgradeMenuCallback(bool active);
+    public UpgradeMenuCallback onToggleUpgradeMenu;
 
     public CinemachineShake_coroutine cinemachineShake;
 
@@ -41,6 +54,7 @@ public class GameMaster : MonoBehaviour
         }
 
         _remainingLives = maxLives;
+        money = startingMoney;
 
         //caching
         audioManager = AudioManager.instance;
@@ -49,11 +63,25 @@ public class GameMaster : MonoBehaviour
         }
     }
 
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.U)) {
+            ToggleUpgradeMenu();
+        }
+    }
+
     public void EndGame() {
-        Debug.Log("GAME OVER");
+        //Debug.Log("GAME OVER");
         audioManager.PlaySound("gameover");
 
         gameOverUI.SetActive(true);
+    }
+
+    public void ToggleUpgradeMenu() {
+        //Debug.Log("upgrade menu");
+
+        upgradeUI.SetActive(!upgradeUI.activeSelf);
+        waveSpawner.enabled = !upgradeUI.activeSelf;
+        onToggleUpgradeMenu.Invoke(upgradeUI.activeSelf);
     }
 
     public IEnumerator RespawnPlayer() {
@@ -86,6 +114,9 @@ public class GameMaster : MonoBehaviour
 
     public void _killEnemy(Enemy _enemy) {
         audioManager.PlaySound(_enemy.audioDeathSoundName);
+
+        money += _enemy.moneyDrop;
+
         // Destroy on the particle system
         Instantiate(_enemy.enemyDeathEffect, _enemy.transform.position, Quaternion.identity);
         cinemachineShake.Shake(_enemy.shakeDuration, _enemy.shakeAmplitude, _enemy.shakeFrequency);

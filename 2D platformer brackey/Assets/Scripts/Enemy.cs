@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(EnemyAI))]
 public class Enemy : MonoBehaviour
 {
     [System.Serializable]
@@ -31,12 +32,15 @@ public class Enemy : MonoBehaviour
     public float shakeAmplitude = 1f;
     public float shakeFrequency = 1f;
 
+    public int moneyDrop = 10;
 
     [Header("Optional")]
     [SerializeField]
     private StatusIndicator statusIndicator;
 
     private void Start() {
+        GameMaster.gm.onToggleUpgradeMenu += OnUpgradeMenuToggle;
+
         enemyStats.Init();
         if (statusIndicator != null) {
             statusIndicator.SetHealth(enemyStats.CurHealth, enemyStats.MaxHealth);
@@ -56,6 +60,11 @@ public class Enemy : MonoBehaviour
         statusIndicator.SetHealth(enemyStats.CurHealth, enemyStats.MaxHealth);        
     }
 
+    void OnUpgradeMenuToggle(bool active) {
+        GetComponent<EnemyAI>().enabled = !active;
+
+    }
+
     private void OnCollisionEnter2D(Collision2D collision) {
         Player _player = collision.collider.GetComponent<Player>();
         if (_player != null) {
@@ -63,6 +72,11 @@ public class Enemy : MonoBehaviour
             DamageEnemy(9999);
 
         }
+    }
+
+    private void OnDestroy() {
+        GameMaster.gm.onToggleUpgradeMenu -= OnUpgradeMenuToggle;
+
     }
 
 

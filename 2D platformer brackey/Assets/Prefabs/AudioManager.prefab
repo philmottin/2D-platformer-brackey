@@ -52,6 +52,13 @@ MonoBehaviour:
     randomVolume: 0.1
     randomPitch: 0.1
     loop: 0
+  - name: RespawnPlayer
+    clip: {fileID: 8300000, guid: eb7c78d9305ae12438c8892e21ea6d9c, type: 3}
+    volume: 0.5
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+    loop: 0
   - name: Music
     clip: {fileID: 8300000, guid: b7037b634b1e40f4dbda49c7d9d7d944, type: 3}
     volume: 0.4
@@ -59,6 +66,13 @@ MonoBehaviour:
     randomVolume: 0
     randomPitch: 0
     loop: 1
+  - name: gameover
+    clip: {fileID: 8300000, guid: 2b10219e93afe5447b0edb09c8152938, type: 3}
+    volume: 0.5
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+    loop: 0
   - name: hoverButton
     clip: {fileID: 8300000, guid: 7d6c62bdc464c2f4f87c6bdcf7de1276, type: 3}
     volume: 0.7
@@ -101,24 +115,24 @@ MonoBehaviour:
     randomVolume: 0
     randomPitch: 0
     loop: 0
-  - name: RespawnPlayer
-    clip: {fileID: 8300000, guid: eb7c78d9305ae12438c8892e21ea6d9c, type: 3}
-    volume: 0.5
-    pitch: 1
-    randomVolume: 0
-    randomPitch: 0
-    loop: 0
-  - name: gameover
-    clip: {fileID: 8300000, guid: 2b10219e93afe5447b0edb09c8152938, type: 3}
-    volume: 0.5
-    pitch: 1
-    randomVolume: 0
-    randomPitch: 0
-    loop: 0
   - name: LandingFootsteps
     clip: {fileID: 8300000, guid: f5be10e0bb7dfc342b0abf5b68b030a1, type: 3}
     volume: 0.7
     pitch: 1
     randomVolume: 0.2
     randomPitch: 0.1
+    loop: 0
+  - name: noMoneyUpgrade
+    clip: {fileID: 8300000, guid: 7c24330bdad222d4fb052ca8a07cdb5f, type: 3}
+    volume: 0.7
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+    loop: 0
+  - name: MoneyUpgradeComplete
+    clip: {fileID: 8300000, guid: 5dfd6fefca1335543a07b6d776364627, type: 3}
+    volume: 0.7
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
     loop: 0
