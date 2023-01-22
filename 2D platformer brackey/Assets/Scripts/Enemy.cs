@@ -10,9 +10,7 @@ public class Enemy : MonoBehaviour
         private int _curHealth;
         public int damage = 40;
 
-        public float shakeDuration = 1.5f;
-        public float shakeAmplitude = 1f;
-        public float shakeFrequency = 1f;
+
 
         public int CurHealth {
             get { return _curHealth; }
@@ -26,6 +24,12 @@ public class Enemy : MonoBehaviour
 
     public EnemyStats enemyStats = new EnemyStats();
     public Transform enemyDeathEffect;
+
+    public string audioDeathSoundName = "explosion";
+
+    public float shakeDuration = 1.5f;
+    public float shakeAmplitude = 1f;
+    public float shakeFrequency = 1f;
 
 
     [Header("Optional")]

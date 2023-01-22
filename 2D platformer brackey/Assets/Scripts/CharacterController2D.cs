@@ -32,7 +32,18 @@ public class CharacterController2D : MonoBehaviour
 	public BoolEvent OnCrouchEvent;
 	private bool m_wasCrouching = false;
 
-	private void Awake()
+	//cache
+	private AudioManager audioManager;
+
+    private void Start() {
+		//caching
+		audioManager = AudioManager.instance;
+		if (audioManager == null) {
+			Debug.Log("No AudioManager found in the scene");
+		}
+	}
+
+    private void Awake()
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
 		playerGFX = transform.Find("PlayerGFX");
@@ -66,8 +77,10 @@ public class CharacterController2D : MonoBehaviour
 			if (colliders[i].gameObject != gameObject)
 			{
 				m_Grounded = true;
-				if (!wasGrounded)
+				if (!wasGrounded) {
+					audioManager.PlaySound("LandingFootsteps");
 					OnLandEvent.Invoke();
+				}
 			}
 		}
 		//Debug.Log(m_Grounded);

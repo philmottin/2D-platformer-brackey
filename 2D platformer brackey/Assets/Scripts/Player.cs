@@ -25,7 +25,16 @@ public class Player : MonoBehaviour
     [SerializeField]
     private StatusIndicator statusIndicator;
 
+    //cache
+    private AudioManager audioManager;
+
     private void Start() {
+        //caching
+        audioManager = AudioManager.instance;
+        if (audioManager == null) {
+            Debug.Log("No AudioManager found in the scene");
+        }
+
         playerStats.Init();
         if (statusIndicator != null) {
             statusIndicator.SetHealth(playerStats.CurHealth, playerStats.MaxHealth);
@@ -37,7 +46,10 @@ public class Player : MonoBehaviour
     public void DamagePlayer(int damage) {
         playerStats.CurHealth -= damage;
         if (playerStats.CurHealth <= 0) {
+            audioManager.PlaySound("deathPlayer");
             GameMaster.KillPlayer(this);
+        } else {
+            audioManager.PlaySound("damagePlayer");
         }
         statusIndicator.SetHealth(playerStats.CurHealth, playerStats.MaxHealth);
     }

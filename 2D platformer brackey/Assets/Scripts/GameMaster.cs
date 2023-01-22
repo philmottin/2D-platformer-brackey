@@ -32,22 +32,36 @@ public class GameMaster : MonoBehaviour
 
     public CinemachineShake_coroutine cinemachineShake;
 
+    //cache
+    private AudioManager audioManager;
+
     private void Start() {
         if (cinemachineShake == null) {
             Debug.LogError("No cinemachineShake reference found in GameMaster");
         }
 
         _remainingLives = maxLives;
+
+        //caching
+        audioManager = AudioManager.instance;
+        if (audioManager == null) {
+            Debug.Log("No AudioManager found in the scene");
+        }
     }
 
     public void EndGame() {
         Debug.Log("GAME OVER");
+        audioManager.PlaySound("gameover");
+
         gameOverUI.SetActive(true);
     }
 
     public IEnumerator RespawnPlayer() {
-        GetComponent<AudioSource>().Play();
+        //GetComponent<AudioSource>().Play();
+        audioManager.PlaySound("Respawn");
+
         yield return new WaitForSeconds(spawnDelay);
+        audioManager.PlaySound("RespawnPlayer");
         Transform clone =  Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
         cinemachine.Follow = clone;
         Transform cloneParticles =  Instantiate(spawnEffectPrefab, spawnPoint.position, spawnPoint.rotation);
@@ -71,9 +85,10 @@ public class GameMaster : MonoBehaviour
     }
 
     public void _killEnemy(Enemy _enemy) {
+        audioManager.PlaySound(_enemy.audioDeathSoundName);
         // Destroy on the particle system
         Instantiate(_enemy.enemyDeathEffect, _enemy.transform.position, Quaternion.identity);
-        cinemachineShake.Shake(_enemy.enemyStats.shakeDuration, _enemy.enemyStats.shakeAmplitude, _enemy.enemyStats.shakeFrequency);
+        cinemachineShake.Shake(_enemy.shakeDuration, _enemy.shakeAmplitude, _enemy.shakeFrequency);
         Destroy(_enemy.gameObject);
         
     }

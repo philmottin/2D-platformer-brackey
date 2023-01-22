@@ -22,6 +22,9 @@ public class Weapon : MonoBehaviour
     //CinemachineShake camShake;
     CinemachineShake_coroutine camShake;
 
+    // caching
+    AudioManager audioManager;
+
     private void Awake() {
         firePoint = transform.Find("FirePoint");
         if (firePoint == null) {
@@ -35,7 +38,10 @@ public class Weapon : MonoBehaviour
         if (camShake == null) {
             Debug.Log("No CinemachineShake script found on GM object");
         }
-
+        audioManager = AudioManager.instance;
+        if (audioManager == null) {
+            Debug.LogError("No audioManager found");
+        }
     }
 
     // Update is called once per frame
@@ -123,6 +129,9 @@ public class Weapon : MonoBehaviour
 
             // or destroy after 0.02f time
             Destroy(muzzleFlashClone.gameObject, 0.02f);
+
+            //Play audio shooting sound
+            audioManager.PlaySound("weaponShoot");
         }
     }
 }

@@ -104,12 +104,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cinemachine: {fileID: 0}
+  maxLives: 3
   playerPrefab: {fileID: 3647014144545592569, guid: 38957c35619aafc42854d362a8ecff5d,
     type: 3}
   spawnPoint: {fileID: 1682542271}
   spawnDelay: 3.5
   spawnEffectPrefab: {fileID: 2241001430578436723, guid: 86b1581a588f39c45936aab21e915050,
     type: 3}
+  gameOverUI: {fileID: 0}
   cinemachineShake: {fileID: 2395196419619421085}
 --- !u!82 &2395196419619421075
 AudioSource:
@@ -118,7 +120,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2395196419619421079}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3fe974601851d6b4086f7a9429dcaa95, type: 3}
@@ -261,7 +263,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e65a08c2aa36d874fa0100f099048bd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoints: []
+  spawnPoints:
+  - {fileID: 6837475021819127393}
+  - {fileID: 1802223606668520943}
+  - {fileID: 1802223605214964096}
   waves:
   - name: Alien invasion
     enemyPrefab: {fileID: 5340286989028556140, guid: 3bdbe643dd1cffd429e943004ce26691,
@@ -279,8 +284,6 @@ MonoBehaviour:
     count: 4
     rate: 2
   timeBetweemWaves: 5
-  waveCountdown: 0
-  state: 2
 --- !u!1001 &2395196420176974085
 PrefabInstance:
   m_ObjectHideFlags: 0
