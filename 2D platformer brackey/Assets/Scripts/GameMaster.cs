@@ -8,7 +8,10 @@ public class GameMaster : MonoBehaviour
     public static GameMaster gm;
     public CinemachineVirtualCamera cinemachine;
 
-    private static int _remainingLives = 3;
+    [SerializeField]
+    private int maxLives = 3;
+
+    private static int _remainingLives;
     public static int RemainingLives { get { return _remainingLives; } }
 
     private void Awake() {
@@ -33,6 +36,8 @@ public class GameMaster : MonoBehaviour
         if (cinemachineShake == null) {
             Debug.LogError("No cinemachineShake reference found in GameMaster");
         }
+
+        _remainingLives = maxLives;
     }
 
     public void EndGame() {
