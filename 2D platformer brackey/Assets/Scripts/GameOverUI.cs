@@ -25,7 +25,7 @@ public class GameOverUI : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
         // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         //caching
         audioManager = AudioManager.instance;
@@ -36,7 +36,7 @@ public class GameOverUI : MonoBehaviour
     }
 
     public void OnMouseOver() {
-        audioManager.PlaySound("hoverButton");
+        audioManager.PlaySound("hoverButton");        
 
-    }    
+    }
 }
